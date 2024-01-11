@@ -1,14 +1,30 @@
-const getAllBooks = (req, res, next) => {
-  res.send("Get all Books");
+const Book = require("../models/book");
+
+const getAllBooks = async (req, res, next) => {
+  const books = await Book.find({ genre: "Horor", favorite: true });
+  res.send(books);
 };
 
-const getBook = (req, res, next) => {
+const getBook = async (req, res, next) => {
   const { id } = req.params;
 
-  res.send(` Get Book - ${id}`);
+  const book = await Book.findById(id);
+
+  if (book === null) {
+    return res.status(404).send("Book not found");
+  }
+
+  res.send(book);
 };
 
 const createBook = (req, res, next) => {
+  const book = {
+    title: req.body.title,
+    author: req.body.author,
+    genre: req.body.genre,
+    year: req.body.year,
+  };
+
   res.send("Create Book");
 };
 
