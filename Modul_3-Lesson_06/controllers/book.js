@@ -25,6 +25,8 @@ const createBook = (req, res, next) => {
     year: req.body.year,
   };
 
+  const result = await Book.create(book);
+
   res.send("Create Book");
 };
 
