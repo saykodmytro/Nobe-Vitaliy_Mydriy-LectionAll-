@@ -20,15 +20,15 @@ function auth(req, res, next) {
       return res.status(401).send({ message: "Invalid token - 3" });
     }
 
-    const user = await User.findById(decode.id);
+    // const user = await User.findById(decode.id);
 
-    if (user === null) {
-      return res.status(401).send({ message: "Invalid token - 4" });
-    }
+    // if (user === null) {
+    //   return res.status(401).send({ message: "Invalid token - 4" });
+    // }
 
-    if (user.token !== token) {
-      return res.status(401).send({ message: "Invalid token - 5" });
-    }
+    // if (user.token !== token) {
+    //   return res.status(401).send({ message: "Invalid token - 5" });
+    // }
 
     req.user = {
       id: decode.id,

@@ -22,7 +22,9 @@ async function getBook(req, res, next) {
       return res.status(404).send("Book not found");
     }
 
-    if (book.ownerId.toString() !== userId) {
+    if (book.ownerId !== userId) {
+      console.log("userId: ", userId);
+      console.log("ownerId: ", { ownerId: book.ownerId });
       // return res.status(403).send("Forbidden");
       return res.status(404).send("Book not found");
     }
